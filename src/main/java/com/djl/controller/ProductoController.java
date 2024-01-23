@@ -3,6 +3,7 @@ package com.djl.controller;
 import com.djl.dto.request.ProductoRequest;
 import com.djl.dto.response.ProductoResponse;
 import com.djl.service.ProductoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class ProductoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveProducto(@RequestBody ProductoRequest productoRequest) {
+    public ResponseEntity<?> saveProducto(@Valid @RequestBody ProductoRequest productoRequest) {
         ProductoResponse response = productoService.save(productoRequest).orElseThrow();
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -40,7 +41,7 @@ public class ProductoController {
 
     @PutMapping("/{pid}")
     public ResponseEntity<?> updateProduct(@PathVariable("pid") Long pid,
-                                           @RequestBody ProductoRequest productoRequest) {
+                                           @Valid @RequestBody ProductoRequest productoRequest) {
         Optional<ProductoResponse> productoResponse = productoService.update(pid, productoRequest);
 
         if (productoResponse.isPresent()) return ResponseEntity.ok(productoResponse.get());
