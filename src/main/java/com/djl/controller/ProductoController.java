@@ -40,7 +40,7 @@ public class ProductoController {
     }
 
     @PutMapping("/{pid}")
-    public ResponseEntity<?> updateProduct(@PathVariable("pid") Long pid,
+    public ResponseEntity<?> updateProducto(@PathVariable("pid") Long pid,
                                            @Valid @RequestBody ProductoRequest productoRequest) {
         Optional<ProductoResponse> productoResponse = productoService.update(pid, productoRequest);
 
@@ -50,7 +50,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{pid}")
-    public ResponseEntity<?> deleteProduct(@PathVariable("pid") Long pid) {
+    public ResponseEntity<?> deleteProducto(@PathVariable("pid") Long pid) {
         Optional<ProductoResponse> productoResponse = productoService.findById(pid);
 
         if (productoResponse.isPresent()) {

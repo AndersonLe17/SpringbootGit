@@ -17,14 +17,14 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping("/")
-    public ResponseEntity<?> insertUsuario(@RequestBody UsuarioRequest usuarioDTO){
-        UsuarioResponse newUsuario=usuarioService.insertUsuario(usuarioDTO);
+    public ResponseEntity<?> saveUsuario(@RequestBody UsuarioRequest usuarioDTO){
+        UsuarioResponse newUsuario = usuarioService.insertUsuario(usuarioDTO);
         return ResponseEntity.ok(newUsuario);
     }
 
     @GetMapping("/")
     public ResponseEntity<?> getAllUsuarios(){
-        List<UsuarioResponse> usuarios=usuarioService.findAllUsuarios();
+        List<UsuarioResponse> usuarios = usuarioService.findAllUsuarios();
         return ResponseEntity.ok(usuarios);
 
     }
@@ -33,7 +33,6 @@ public class UsuarioController {
     public ResponseEntity<?> updatedUsuario(@RequestBody UsuarioRequest usuarioDTO, @PathVariable(name="uid") Integer uid){
         UsuarioResponse updateUsuario=usuarioService.updateUsuario(usuarioDTO,uid);
         return ResponseEntity.ok(updateUsuario==null? "ERROR AL MODIFICAR":updateUsuario);
-
     }
     @DeleteMapping("/{uid}")
     public ResponseEntity<?> deleteUsuarioById(@PathVariable(name="uid") Integer uid){

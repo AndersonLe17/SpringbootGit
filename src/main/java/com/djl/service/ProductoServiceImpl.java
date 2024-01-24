@@ -54,7 +54,7 @@ public class ProductoServiceImpl implements ProductoService {
         if (productoOpt.isPresent()) {
             Producto producto = productoOpt.get();
             modelMapper.map(productoRequest, producto);
-            System.out.println(producto);
+
             producto = productoRepository.save(producto);
             return Optional.of(modelMapper.map(producto, ProductoResponse.class));
         }
