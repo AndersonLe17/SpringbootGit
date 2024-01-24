@@ -1,5 +1,7 @@
 package com.djl.controller;
 
+import com.djl.config.exceptions.AppException;
+import com.djl.config.exceptions.ResourceNotFoundException;
 import com.djl.dto.request.ProductoRequest;
 import com.djl.dto.response.ProductoResponse;
 import com.djl.service.ProductoService;
@@ -58,7 +60,7 @@ public class ProductoController {
             return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.notFound().build();
+        throw new ResourceNotFoundException("Producto", "ID", pid);
     }
 
 }

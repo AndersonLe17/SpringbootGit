@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data @Builder
 @AllArgsConstructor @NoArgsConstructor
 public class ProductoRequest {
-    @Size(min = 3, max = 150)
+    @Size(min = 3, max = 150, message = "El nombre debe tener entre 3 y 150 caracteres")
     private String nombre;
     @Size(min = 3, max = 25)
     private String marca;
