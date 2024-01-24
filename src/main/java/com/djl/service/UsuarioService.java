@@ -1,22 +1,22 @@
 package com.djl.service;
-import com.djl.domain.Usuario;
 import com.djl.dto.request.UsuarioRequest;
 import com.djl.dto.response.UsuarioResponse;
-import com.djl.repository.UsuarioRepository;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UsuarioService {
 
-    UsuarioResponse insertUsuario(UsuarioRequest usuarioDTO);
 
     List<UsuarioResponse> findAllUsuarios();
 
-    UsuarioResponse updateUsuario(UsuarioRequest usuarioDTO, Integer uid);
+    Optional<UsuarioResponse> saveUsuario(UsuarioRequest usuarioRequest);
 
-    String deleteUsuario(Integer uid);
+    Optional<UsuarioResponse> findById(Long uid);
+
+    Optional<UsuarioResponse> update(Long uid, UsuarioRequest usuarioRequest);
+
+    void delete(Long uid);
 }

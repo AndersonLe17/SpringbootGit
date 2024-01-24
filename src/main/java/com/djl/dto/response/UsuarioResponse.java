@@ -1,5 +1,8 @@
 package com.djl.dto.response;
 
+import com.djl.domain.enums.EstadoUsuario;
+import com.djl.domain.enums.Rol;
+import com.djl.domain.enums.TipoDocumento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,14 +12,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioResponse {
+    private TipoDocumento tipoDocumento;
+    private String numDocumento;
     private String nombre;
     private String apellido;
     private String username;
     private String email;
-    private String rol;
-    private String estado;
+    private Rol rol;
+    private EstadoUsuario estado;
     private Date fechaNacimiento;
     private String celular;
-    private String direccion;
-    private String pais;
 }

@@ -3,51 +3,61 @@ import com.djl.domain.Usuario;
 import com.djl.dto.request.UsuarioRequest;
 import com.djl.dto.response.UsuarioResponse;
 import com.djl.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService{
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+
+    private final UsuarioRepository usuarioRepository;
+    private final ModelMapper modelMapper;
 
     @Override
-    public UsuarioResponse insertUsuario(UsuarioRequest usuarioDTO) {
-        Usuario usuario=modelMapper.map(usuarioDTO, Usuario.class);
-        UsuarioResponse newUsuario=modelMapper.map(usuarioRepository.save(usuario), UsuarioResponse.class);
-        return newUsuario;
-    }
-
-    @Override
+    @Transactional(readOnly = true)
     public List<UsuarioResponse> findAllUsuarios() {
-        List<Usuario> usuarios=usuarioRepository.findAll();
-        List<UsuarioResponse> usuarioResponse= usuarios.stream().map(u -> modelMapper.map(u,UsuarioResponse.class)).toList();
-        return usuarioResponse;
+        return usuarioRepository.findAll().stream().map(u -> modelMapper.map(u,UsuarioResponse.class)).toList();
     }
 
     @Override
-    public UsuarioResponse updateUsuario(UsuarioRequest usuarioDTO, Integer uid) {
-        Usuario usuario = usuarioRepository.findById(uid).orElseThrow();
-
-        modelMapper.map(usuarioDTO, usuario);
-        usuarioRepository.save(usuario);
-        UsuarioResponse response = modelMapper.map(usuario, UsuarioResponse.class);
-        return response;
+    @Transactional
+    public Optional<UsuarioResponse> saveUsuario(UsuarioRequest usuarioRequest) {
+        Usuario usuario = modelMapper.map(usuarioRequest, Usuario.class);
+        usuario = usuarioRepository.save(usuario);
+        return Optional.ofNullable(modelMapper.map(usuario, UsuarioResponse.class));
     }
 
-
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<UsuarioResponse> findById(Long uid) {
+            Optional<Usuario> usuario = usuarioRepository.findById(uid);
+        if (usuario.isPresent()) return Optional.of(modelMapper.map(usuario.get(), UsuarioResponse.class));
+        return Optional.empty();
+    }
 
     @Override
-    public String deleteUsuario(Integer uid) {
-        Usuario usuario=usuarioRepository.findById(uid).orElseThrow();
-        usuarioRepository.delete(usuario);
-        return "SE ELIMINO EL USUARIO";
+    @Transactional
+    public Optional<UsuarioResponse> update(Long uid, UsuarioRequest usuarioRequest) {
+        Optional <Usuario> usuarioopt = usuarioRepository.findById(uid);
+        if(usuarioopt.isPresent()){
+            Usuario usuario = usuarioopt.get();
+            modelMapper.map(usuarioRequest, usuario);
+            usuario=usuarioRepository.save(usuario);
+            return Optional.of(modelMapper.map(usuario, UsuarioResponse.class));
+
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long uid) {
+        usuarioRepository.deleteById(uid);
     }
 
 
