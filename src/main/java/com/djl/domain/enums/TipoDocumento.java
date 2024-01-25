@@ -2,13 +2,8 @@ package com.djl.domain.enums;
 
 public enum TipoDocumento {
     DNI,
-    CARNET_EXTRANJERIA,
-    PASAPORTE,
-    LICENCIA_CONDUCIR,
-    CEDULA_IDENTIDAD
-
-
-
+    CE,
+    PASS
 
 //    DNI ("DNI"),
 //    CARNET_EXTRANJERIA("Carnet de extranjeria"),
