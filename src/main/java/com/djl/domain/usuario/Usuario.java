@@ -1,5 +1,6 @@
-package com.djl.domain;
+package com.djl.domain.usuario;
 
+import com.djl.domain.config.EntityBase;
 import com.djl.domain.enums.EstadoUsuario;
 import com.djl.domain.enums.Rol;
 import com.djl.domain.enums.TipoDocumento;
@@ -12,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity @Table(name="usuarios")
-public class Usuario extends EntityBase{
+public class Usuario extends EntityBase {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

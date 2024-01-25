@@ -1,4 +1,4 @@
-package com.djl.dto.response;
+package com.djl.domain.usuario.dto;
 
 import com.djl.domain.enums.EstadoUsuario;
 import com.djl.domain.enums.Rol;

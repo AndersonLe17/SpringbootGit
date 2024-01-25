@@ -1,4 +1,4 @@
-package com.djl.domain;
+package com.djl.domain.config;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

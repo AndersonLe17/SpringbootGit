@@ -1,6 +1,6 @@
-package com.djl.service;
-import com.djl.dto.request.UsuarioRequest;
-import com.djl.dto.response.UsuarioResponse;
+package com.djl.service.usuario;
+import com.djl.domain.usuario.dto.UsuarioRequest;
+import com.djl.domain.usuario.dto.UsuarioResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

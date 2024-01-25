@@ -1,7 +1,7 @@
-package com.djl.service;
-import com.djl.domain.Usuario;
-import com.djl.dto.request.UsuarioRequest;
-import com.djl.dto.response.UsuarioResponse;
+package com.djl.service.usuario;
+import com.djl.domain.usuario.Usuario;
+import com.djl.domain.usuario.dto.UsuarioRequest;
+import com.djl.domain.usuario.dto.UsuarioResponse;
 import com.djl.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

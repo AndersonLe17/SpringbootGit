@@ -1,8 +1,9 @@
-package com.djl.service;
+package com.djl.service.producto;
 
-import com.djl.domain.Producto;
-import com.djl.dto.request.ProductoRequest;
-import com.djl.dto.response.ProductoResponse;
+import com.djl.domain.producto.Producto;
+import com.djl.domain.producto.dto.ProductoSaveReq;
+import com.djl.domain.producto.dto.ProductoUpdateReq;
+import com.djl.domain.producto.dto.ProductoRes;
 import com.djl.repository.ProductoRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,42 +22,42 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     @Transactional
-    public Optional<ProductoResponse> save(ProductoRequest productoRequest) {
-        Producto producto = modelMapper.map(productoRequest, Producto.class);
+    public Optional<ProductoRes> save(ProductoSaveReq productoSaveReq) {
+        Producto producto = modelMapper.map(productoSaveReq, Producto.class);
         producto = productoRepository.save(producto);
 
-        return Optional.ofNullable(modelMapper.map(producto, ProductoResponse.class));
+        return Optional.ofNullable(modelMapper.map(producto, ProductoRes.class));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductoResponse> findAll() {
+    public List<ProductoRes> findAll() {
         return productoRepository.findAll().stream()
-                .map(producto -> modelMapper.map(producto, ProductoResponse.class))
+                .map(producto -> modelMapper.map(producto, ProductoRes.class))
                 .toList();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ProductoResponse> findById(Long pid) {
+    public Optional<ProductoRes> findById(Long pid) {
         Optional<Producto> producto = productoRepository.findById(pid);
 
-        if (producto.isPresent()) return Optional.of(modelMapper.map(producto.get(), ProductoResponse.class));
+        if (producto.isPresent()) return Optional.of(modelMapper.map(producto.get(), ProductoRes.class));
 
         return Optional.empty();
     }
 
     @Override
     @Transactional
-    public Optional<ProductoResponse> update(Long pid, ProductoRequest productoRequest) {
+    public Optional<ProductoRes> update(Long pid, ProductoUpdateReq productoUpdateReq) {
         Optional<Producto> productoOpt = productoRepository.findById(pid);
 
         if (productoOpt.isPresent()) {
             Producto producto = productoOpt.get();
-            modelMapper.map(productoRequest, producto);
+            modelMapper.map(productoUpdateReq, producto);
 
             producto = productoRepository.save(producto);
-            return Optional.of(modelMapper.map(producto, ProductoResponse.class));
+            return Optional.of(modelMapper.map(producto, ProductoRes.class));
         }
 
         return Optional.empty();

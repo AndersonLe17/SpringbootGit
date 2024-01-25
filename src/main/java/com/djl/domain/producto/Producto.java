@@ -1,5 +1,6 @@
-package com.djl.domain;
+package com.djl.domain.producto;
 
+import com.djl.domain.config.EntityBase;
 import com.djl.domain.enums.Categoria;
 import com.djl.domain.enums.EstadoProducto;
 import jakarta.persistence.*;

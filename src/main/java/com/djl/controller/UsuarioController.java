@@ -1,8 +1,8 @@
 package com.djl.controller;
 
-import com.djl.dto.request.UsuarioRequest;
-import com.djl.dto.response.UsuarioResponse;
-import com.djl.service.UsuarioService;
+import com.djl.domain.usuario.dto.UsuarioRequest;
+import com.djl.domain.usuario.dto.UsuarioResponse;
+import com.djl.service.usuario.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.djl.dto.response;
+package com.djl.domain.producto.dto;
 
 import com.djl.domain.enums.Categoria;
 import com.djl.domain.enums.EstadoProducto;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data @Builder
 @AllArgsConstructor @NoArgsConstructor
-public class ProductoResponse {
+public class ProductoRes {
     private Long id;
     private String nombre;
     private String marca;

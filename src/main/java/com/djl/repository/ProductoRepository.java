@@ -1,6 +1,6 @@
 package com.djl.repository;
 
-import com.djl.domain.Producto;
+import com.djl.domain.producto.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
