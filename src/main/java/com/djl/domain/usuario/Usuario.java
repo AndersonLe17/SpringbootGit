@@ -18,7 +18,7 @@ public class Usuario extends EntityBase {
     private Long id;
     @Enumerated(EnumType.STRING) @Column(nullable = false)
     private TipoDocumento tipoDocumento;
-    @Column(nullable = false, length = 15, unique = true)
+    @Column(nullable = false, length = 15, unique = true, name = "NUMDOC")
     private String numDocumento;
     @Column(length = 100, nullable = false)
     private String nombre;
